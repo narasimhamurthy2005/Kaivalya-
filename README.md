@@ -2,7 +2,6 @@
 
 **Kaivalya** is a local **Retrieval-Augmented Generation (RAG)** system integrated with **GPT4All Falcon**, capable of providing multilingual (English, Hindi, Telugu, Tamil) health advice through **text or voice** via a **Telegram bot interface**.  
 It also provides a feature to show **nearby hospitals** with Google Maps links.
-
 ---
 
 ## 📚 Project Overview
