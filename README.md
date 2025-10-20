@@ -34,3 +34,104 @@ The bot supports:
 ---
 
 ## 🗂️ Project Structure
+
+kaivalya/
+│
+├── scraped_pages/ # Folder containing scraped text files
+│
+├── scrape_helpguide.py # Scrapes data from medical websites
+├── build_embeddings.py # Splits, translates, and embeds text data
+├── rag_local.py # Local RAG model + GPT Falcon integration
+├── bot.py # Telegram bot (text/audio/location)
+│
+├── chunks.npy # Saved text chunks
+├── embeddings.npy # Corresponding vector embeddings
+│
+├── models/
+│ └── gpt4all-falcon-newbpe-q4_0.gguf # Local LLM model
+│
+└── README.md # Project documentation (this file)
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/<your-username>/kaivalya.git
+cd kaivalya
+---
+### 2️⃣ Install Required Packages
+
+pip install -r requirements.txt
+requests
+beautifulsoup4
+langchain
+sentence-transformers
+numpy
+faiss-cpu
+gpt4all
+googletrans==4.0.0-rc1
+deep-translator
+speechrecognition
+pydub
+gtts
+python-telegram-bot==20.3
+---
+### Data Preparation Workflow
+
+#### Step 1: Scrape Health Data
+
+python scrape_helpguide.py
+
+#### Step 2: Build Embeddings
+
+python build_embeddings.py
+
+#### Step 3: Launch Local RAG Chatbot
+
+python rag_local.py
+
+#### Step 4: Run Telegram Bot
+
+python bot.py
+
+### Interact via Telegram:
+
+1. /start → Open main menu
+
+2. “Symptoms → Advice” → Choose text/audio
+
+3. “Nearby Hospitals” → Get hospital info
+
+#### EX:You: What are the symptoms of a heart attack in Hindi
+Bot: हार्ट अटैक के लक्षणों में सीने में दर्द, सांस की कमी, और थकान शामिल हैं।
+
+### Hospital Finder:
+When you share your location or select “Nearby Hospitals,” Kaivalya shows hospitals with:
+
+🏥 Name
+📍 Address
+🔗 Google Maps link
+
+Example:
+🏥 SLG Hospitals  
+📍 Nizampet, Hyderabad, Telangana  
+🔗 [Google Maps Link](https://share.google/AVfA5qL29nL6DQkhY)
+
+### Multilingual Support:
+
+Kaivalya understands and responds in:
+
+🇮🇳 English
+
+🇮🇳 Hindi
+
+🇮🇳 Telugu
+
+🇮🇳 Tamil
+
+### Model Used:
+
+GPT4All Falcon (gpt4all-falcon-newbpe-q4_0.gguf)
+
+
