@@ -35,21 +35,21 @@ The bot supports:
 
 ## 🗂️ Project Structure
 
-kaivalya/
-│
+kaivalya/<br><br>
+│<br>
 ├── scraped_pages/ # Folder containing scraped text files<br>
-│
+│<br>
 ├── scrape_helpguide.py # Scrapes data from medical websites<br>
 ├── build_embeddings.py # Splits, translates, and embeds text data<br>
 ├── rag_local.py # Local RAG model + GPT Falcon integration<br>
 ├── bot.py # Telegram bot (text/audio/location)<br>
-│
+│<br>
 ├── chunks.npy # Saved text chunks<br>
 ├── embeddings.npy # Corresponding vector embeddings<br>
-│
+│<br>
 ├── models/<br>
 │ └── gpt4all-falcon-newbpe-q4_0.gguf # Local LLM model<br>
-│
+│<br>
 └── README.md # Project documentation (this file)<br>
 ---
 
