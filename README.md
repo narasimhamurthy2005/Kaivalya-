@@ -57,7 +57,7 @@ kaivalya/<br><br>
 
 ### 1️⃣ Clone the Repository
 
-git clone https://github.com/<your-username>/kaivalya.git
+git clone https://github.com/<your-username>/kaivalya.git<br>
 cd kaivalya
 ---
 ### 2️⃣ Install Required Packages
@@ -78,25 +78,25 @@ gtts
 python-telegram-bot==20.3
 
 ---
-### Data Preparation Workflow
+## Data Preparation Workflow
 
-#### Step 1: Scrape Health Data
+### Step 1: Scrape Health Data
 
 python scrape_helpguide.py
 
-#### Step 2: Build Embeddings
+### Step 2: Build Embeddings
 
 python build_embeddings.py
 
-#### Step 3: Launch Local RAG Chatbot
+### Step 3: Launch Local RAG Chatbot
 
 python rag_local.py
 
-#### Step 4: Run Telegram Bot
+### Step 4: Run Telegram Bot
 
 python bot.py
 
-### Interact via Telegram:
+## Interact via Telegram:
 
 1. /start → Open main menu
 
@@ -104,22 +104,22 @@ python bot.py
 
 3. “Nearby Hospitals” → Get hospital info
 
-#### EX:You: What are the symptoms of a heart attack in Hindi
+### EX:You: What are the symptoms of a heart attack in Hindi
 Bot: हार्ट अटैक के लक्षणों में सीने में दर्द, सांस की कमी, और थकान शामिल हैं।
 
-### Hospital Finder:
+## Hospital Finder:
 When you share your location or select “Nearby Hospitals,” Kaivalya shows hospitals with:
 
-🏥 Name
-📍 Address
-🔗 Google Maps link
+🏥 Name<br>
+📍 Address<br>
+🔗 Google Maps link<br>
 
 Example:
 🏥 SLG Hospitals  
 📍 Nizampet, Hyderabad, Telangana  
 🔗 [Google Maps Link](https://share.google/AVfA5qL29nL6DQkhY)
 
-### Multilingual Support:
+## Multilingual Support:
 
 Kaivalya understands and responds in:
 
@@ -131,6 +131,6 @@ Kaivalya understands and responds in:
 
 🇮🇳 Tamil
 
-### Model Used:
+## Model Used:
 
 GPT4All Falcon (gpt4all-falcon-newbpe-q4_0.gguf)
