@@ -14,7 +14,7 @@ from telegram.ext import (
 )
 from rag_local import rag_query  
 
-BOT_TOKEN = "8370764448:AAHJrODfSNzoKboqdiYVt8KXjviUdPCP0BI" 
+BOT_TOKEN = "telegram token " 
 HOSPITALS = [
     {
         "name": "Archana Hospital (A Block) - Best Multispeciality Hospital in Madinaguda",
