@@ -1,19 +1,21 @@
 # 🧘‍♂️ Kaivalya — Multilingual Health RAG Chatbot
 
-**Kaivalya** is a local **Retrieval-Augmented Generation (RAG)** system integrated with **GPT4All Falcon**, capable of providing multilingual (English, Hindi, Telugu, Tamil) health advice through **text or voice** via a **Telegram bot interface**.  
-It also provides a feature to show **nearby hospitals** with Google Maps links.
+**Kaivalya** is a local **Retrieval-Augmented Generation (RAG)** system integrated with **GPT4All Falcon**, designed to provide **multilingual health advice** (English, Hindi, Telugu, Tamil) via **text or voice** through a **Telegram bot interface**.  
+It also features a **Nearby Hospitals Finder** that provides hospital details and Google Maps links.
 
 ---
 
 ## 📚 Project Overview
 
-Kaivalya intelligently retrieves health-related information from scraped medical websites (like [heart.org](https://www.heart.org)) and uses **FAISS vector search** with **SentenceTransformer embeddings** to generate accurate, context-aware responses.
+Kaivalya combines web-scraped medical knowledge with powerful AI models to offer health information that is accurate, multilingual, and easy to access.  
+It retrieves relevant data from health websites like [heart.org](https://www.heart.org), processes it into embeddings using **FAISS** and **SentenceTransformers**, and responds intelligently using the **GPT4All Falcon** model — all running **locally without internet dependency**.
 
-The bot supports:
-- 💬 **Text chat** (Ask health-related questions)
-- 🎤 **Voice chat** (Audio to text → RAG → speech response)
-- 🏥 **Nearby hospital finder**
-- 🌐 **Multilingual support:** English, Hindi, Telugu, Tamil
+### 🧠 Core Features:
+- 💬 **Text Chat:** Ask any health-related question.
+- 🎤 **Voice Chat:** Speak your query (audio → text → response).
+- 🏥 **Nearby Hospitals Finder:** Provides names, addresses, and Google Maps links.
+- 🌐 **Multilingual Support:** English, Hindi, Telugu, Tamil.
+- 🔒 **Local Execution:** Fully offline, no external API costs.
 
 ---
 
@@ -21,15 +23,15 @@ The bot supports:
 
 | Category | Tools / Libraries |
 |-----------|-------------------|
-| **Language** | Python 3.10+ |
+| **Programming Language** | Python 3.10+ |
 | **Web Scraping** | `requests`, `BeautifulSoup4` |
 | **Translation** | `googletrans`, `deep-translator` |
 | **Text Processing** | `langchain.text_splitter` |
 | **Embeddings** | `sentence-transformers` (`all-MiniLM-L6-v2`) |
 | **Vector Store** | `FAISS` |
-| **LLM** | `GPT4All Falcon (gguf)` |
+| **Language Model (LLM)** | `GPT4All Falcon (gguf)` |
 | **Audio Processing** | `speech_recognition`, `pydub`, `gtts` |
-| **Telegram Bot** | `python-telegram-bot` |
+| **Chat Platform** | `python-telegram-bot` |
 
 ---
 
@@ -39,18 +41,22 @@ kaivalya/
 │
 ├── scraped_pages/ # Folder containing scraped text files
 │
-├── scrape_helpguide.py # Scrapes data from medical websites
+├── scrape_helpguide.py # Script to scrape data from medical websites
 ├── build_embeddings.py # Splits, translates, and embeds text data
 ├── rag_local.py # Local RAG model + GPT Falcon integration
-├── bot.py # Telegram bot (text/audio/location)
+├── bot.py # Telegram bot (text, audio, hospital search)
 │
 ├── chunks.npy # Saved text chunks
 ├── embeddings.npy # Corresponding vector embeddings
 │
 ├── models/
-│ └── gpt4all-falcon-newbpe-q4_0.gguf # Local LLM model
+│ └── gpt4all-falcon-newbpe-q4_0.gguf # Local LLM model file
 │
 └── README.md # Project documentation (this file)
+
+yaml
+Copy code
+
 ---
 
 ## ⚙️ Setup Instructions
@@ -59,10 +65,11 @@ kaivalya/
 ```bash
 git clone https://github.com/<your-username>/kaivalya.git
 cd kaivalya
----
-### 2️⃣ Install Required Packages
+2️⃣ Install Required Packages
+Create a requirements.txt file and paste the following:
 
-pip install -r requirements.txt
+txt
+Copy code
 requests
 beautifulsoup4
 langchain
@@ -76,51 +83,75 @@ speechrecognition
 pydub
 gtts
 python-telegram-bot==20.3
----
-### Data Preparation Workflow
+Then install dependencies:
 
-#### Step 1: Scrape Health Data
-
+bash
+Copy code
+pip install -r requirements.txt
+🧠 Data Preparation Workflow
+Step 1: Scrape Health Data
+bash
+Copy code
 python scrape_helpguide.py
+This script scrapes content from medical websites (e.g., heart.org) and saves the data in scraped_pages/.
 
-#### Step 2: Build Embeddings
-
+Step 2: Build Embeddings
+bash
+Copy code
 python build_embeddings.py
+This script:
 
-#### Step 3: Launch Local RAG Chatbot
+Splits text into small chunks (≈500 characters)
 
+Translates them into Hindi, Telugu, and Tamil
+
+Generates embeddings using SentenceTransformer
+
+Saves the results as chunks.npy and embeddings.npy
+
+Step 3: Launch the Local RAG Chatbot
+bash
+Copy code
 python rag_local.py
+Now you can chat locally:
 
-#### Step 4: Run Telegram Bot
-
-python bot.py
-
-### Interact via Telegram:
-
-1. /start → Open main menu
-
-2. “Symptoms → Advice” → Choose text/audio
-
-3. “Nearby Hospitals” → Get hospital info
-
-#### EX:You: What are the symptoms of a heart attack in Hindi
+makefile
+Copy code
+You: What are symptoms of a heart attack in Hindi?
 Bot: हार्ट अटैक के लक्षणों में सीने में दर्द, सांस की कमी, और थकान शामिल हैं।
+Step 4: Run the Telegram Bot
+bash
+Copy code
+python bot.py
+Open your Telegram bot (created via BotFather) and interact with Kaivalya.
 
-### Hospital Finder:
-When you share your location or select “Nearby Hospitals,” Kaivalya shows hospitals with:
+💬 How to Interact via Telegram
+Commands:
 
-🏥 Name
-📍 Address
-🔗 Google Maps link
+/start → Opens the main menu.
+
+Symptoms → Advice → Choose between text or voice input.
+
+Nearby Hospitals → Get a list of hospitals with maps.
 
 Example:
+
+makefile
+Copy code
+You: What are the symptoms of a heart attack in Hindi?
+Bot: हार्ट अटैक के लक्षणों में सीने में दर्द, सांस की कमी, और थकान शामिल हैं।
+🏥 Hospital Finder
+When you share your location or select “Nearby Hospitals,” Kaivalya shows hospitals in your area:
+
+Example Output:
+
+less
+Copy code
 🏥 SLG Hospitals  
 📍 Nizampet, Hyderabad, Telangana  
 🔗 [Google Maps Link](https://share.google/AVfA5qL29nL6DQkhY)
-
-### Multilingual Support:
-
-Kaivalya understands and responds in:
+🌐 Multilingual Support
+Kaivalya can understand and respond in:
 
 🇮🇳 English
 
@@ -130,8 +161,30 @@ Kaivalya understands and responds in:
 
 🇮🇳 Tamil
 
-### Model Used:
+It auto-detects the language of your question and responds in the same language.
 
-GPT4All Falcon (gpt4all-falcon-newbpe-q4_0.gguf)
+🧠 Model Used
+Model: GPT4All Falcon (gpt4all-falcon-newbpe-q4_0.gguf)
+Mode: Local LLM Execution (no external API)
+Embeddings: all-MiniLM-L6-v2
+Vector Search: FAISS Index
 
+🧭 Future Enhancements
+🔹 Integrate dynamic hospital detection via Google Maps API
 
+🔹 Add disease prediction from user symptoms
+
+🔹 Include nutrition, yoga, and exercise modules
+
+🔹 Build a web and Android interface
+
+👨‍💻 Author
+Project Name: Kaivalya
+Developer: Murthy K
+Model Used: GPT4All Falcon
+Goal: To make multilingual AI-powered health awareness accessible to everyone, locally and privately.
+
+⚠️ Disclaimer
+Kaivalya is not a medical professional.
+The information provided is for educational and awareness purposes only.
+Always consult a certified doctor for medical advice.
